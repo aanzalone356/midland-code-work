@@ -1,0 +1,25 @@
+body{
+    background-image:"sunset.jpg";
+    background-color: antiquewhite;
+}
+h1{
+    text-align: center;
+}
+.table1{
+    border: 3px solid black;
+    text-align: left;
+    margin: center;
+    border-collapse: collapse;
+    width: 70%;
+}
+.tableHead{
+    margin-left: 5%;
+    color: rgb(129, 18, 133);
+    font-size: large;
+}
+td:hover {background-color: rgb(27, 197, 35);}
+.tableMain{
+    margin: 5%;
+    border: 2px solid black;
+    padding: 5px;
+}
