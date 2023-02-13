@@ -1,0 +1,28 @@
+header{
+    font-family: "Helvetica", -apple-system, sans-serif;
+}
+
+/*
+Yay comment line
+Lowest Level of a CSS sheet is at the top
+Header is the lowest
+The "red-text" class is second
+The "uniid" id is the Top
+(this is also the case for general specificity(done on purpose :D))
+*/
+
+.red-text {
+    color: red;
+    width: calc(15% - 6px);
+}
+
+#uniid{
+    color: blue;
+    /*
+    margin: <Distance Vertically> <Distance Horizaontally>;
+    margin: 20px auto;
+    padding: <> <>; This is done in element
+
+    */
+}
+

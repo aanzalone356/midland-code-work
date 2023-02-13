@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flexPractice</title>
+    <style>
+        *{
+            text-align: center;
+            color: white;
+        }
+        header{
+            width: 100%;
+            position:static;
+            text-align: center;
+            background-color: black;
+            color: aliceblue;
+            height: 50px;
+        }
+        div{
+            min-height: 100px;
+            justify-content: space-around;
+        }
+        .mainContainer{
+            display: flex;
+            flex-flow: row wrap;
+        }
+        .blueContainer{
+            display: flex;
+            flex-flow: row wrap;
+            flex-basis: calc(100% / 3 * 2);
+        }
+        .blueBox{
+            background-color: blue;
+            margin: 2px;
+            flex: 0 1 calc(100% / 3 - 4px);
+        }
+        .redContainer{
+            display: flex;
+            flex-flow: column wrap;
+            flex-basis: calc(100% / 3)
+        }
+        .redBox{
+            margin: 2px;
+            background-color: red;
+            flex: 0 1 calc(100% -4px)
+        }
+        footer{
+            width: 100%;
+            position:static;
+            text-align: center;
+            background-color: black;
+            color: aliceblue;
+            height: 50px;
+        }
+        .order1{
+            order: 1;
+        }
+        .order2{
+            order: 2;
+        }
+        .order3{
+            order: 3;
+        }
+        .order4{
+            order: 4;
+        }
+        .order5{
+            order: 5;
+        }
+        .order6{
+            order: 6;
+        }
+    </style>
+</head>
+<body>
+    <header>HEADER</header>
+    <div class="mainContainer">
+    <main class="blueContainer">
+        <div class="blueBox">1</div>
+        <div class="blueBox order3">2</div>
+        <div class="blueBox order6">3</div>
+        <div class="blueBox order5">4</div>
+        <div class="blueBox order4">5</div>
+        <div class="blueBox order2">6</div>
+    </main>
+    <section class="redContainer">
+        <div class="redBox order3">1</div>
+        <div class="redBox order1">2</div>
+        <div class="redBox order2">3</div>
+    </section>
+    </div>
+    <footer>Footer</footer>
+</body>
+</html>

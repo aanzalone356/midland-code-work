@@ -1,0 +1,53 @@
+.container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    min-width: calc(100% / 10 - 2px);
+    min-height: 50px;
+    box-shadow: 1px 1px 20px grey;
+}
+.cyanBox{
+    background-color: aqua;
+}
+.greenBox{
+    background-color: limegreen;
+}
+.yellowBox{
+    background-color: yellow;
+}
+.purpleBox{
+    background-color: rgb(179, 110, 179);
+}
+.blackBox{
+    background-color: black;
+}
+.blueBox{
+    background-color: blue;
+}
+.orangeBox{
+    background-color: orange;
+}
+.redBox{
+    background-color: red;
+}
+.borderLeft{
+    border-left: 2px solid black;
+    flex-basis: auto;
+}
+.borderRight{
+    border-right: 2px solid black;
+    flex-basis: auto;
+}
+.borderTop{
+    border-top: 2px solid black;
+    flex-basis: auto;
+}
+.borderBottom{
+    border-bottom: 2px solid black;
+    flex-basis: auto;
+}
+/*
+box-shadow
+border-box
+
+*/
