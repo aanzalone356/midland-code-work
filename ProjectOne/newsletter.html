@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="fitnessPage.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Big Gains Inc.</title>
+</head>
+<body class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="https://rysesupps.com"><img src="ryseLogo.avif" id="logo" alt="Ryse" title="logo"></a>
+                <ul class="navbar-nav justify-content-center nav-pills">
+                    <li class="nav-item topBar"><a class="nav-link" href="index.html">Main Page</a></li>
+                    <li class="nav-item topBar"><a class="nav-link" href="itemDescriptions.html">Item Info</a></li>
+                    <li class="nav-item topBar"><a class="nav-link active" href="#">Newsletter/Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header> 
+    <!--Form discrption-->
+    
+    <div class="container">
+        <div id="contactInfo">We always love to hear your input and reactions to new products. However we know sometimes we make mistakes to so don't be afraid to voice your concerns. Below is our contact info and a Newsletter sign up. Join the Newsletter for deals and steals RYSE family!</div>
+        <div class="product">Email - RyseCorp@gmai.com</div>
+        <div class="product">Phone - 763-632-89##</div>
+        <div class="product">Office - 145 S. Kepler Ave. 62768</div>
+    </div>
+    <form action="/newsletter_signup.net" target="_blank">
+        <input type="text" id="fName" name="fName"></input>
+        <label for="fName">First Name</label>
+        <input type="text" id="lName" name="lName"></input>
+        <label for="lName">Last Name</label>
+        <input type="text" id="email" name="email"></input>
+        <label for="email">Email</label>
+        <textarea name="testamony" rows="10" style="width: 100%;"></textarea>
+        <input type="radio" id="dealsOnly" name="letterInfo">
+        <label for="dealsOnly">Deals Only</label>
+        <input type="radio" id="drops&Deals" name="letterInfo">
+        <label for="drops&Deals">Deals and Drops</label>
+        <input type="radio" id="everythingBack" name="letterInfo">
+        <label for="everythingBack">All Promotions</label><br>
+        <input type="submit" value="Submit" id="submittion"><hr>      
+    </form>
+    <footer>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="https://rysesupps.com"><img src="ryseLogo.avif" id="logo" alt="Ryse" title="logo"> RYSE Inc.</a>
+                
+            </div>
+        </nav>
+    </footer>
+</body>
+</html>

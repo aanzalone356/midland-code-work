@@ -1,0 +1,66 @@
+.container{
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
+}
+.mainContainer{
+    display: flex;
+    flex-flow: row wrap;
+    flex-basis: calc(100% / 5 * 4);
+    justify-content: space-around;
+    padding-top: 20px;
+}
+.sideContainer{
+    display: flex;
+    flex-flow: column wrap;
+    flex-basis: calc(100% / 5);
+    padding-top: 20px;
+}
+.product{
+    display: flex;
+    flex: 1 1 calc(100% / 3 - 4px);
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.productNames{
+    float: left;
+    text-align: left;
+    border: 2px solid black;
+}
+.athlete{
+    flex: 1 1 calc(100% - 4px);
+    float: right;
+    text-decoration: none;
+}
+.imgSetting{
+    max-height: 20%;
+    max-width: 20%;
+    min-height: 100px;
+    min-width: 100px;
+}
+.topBar:hover{background-color: rgb(95, 144, 187);}
+.sideItem{
+    padding: 4px;
+    color: aliceblue;
+    text-shadow: 2px 2px black;
+}
+.itemDescription{
+    display: flex;
+    flex: 1 1 calc(100% / 2 - 2px);
+    justify-content: space-around;
+    border: 2px solid black;
+}
+#logo{
+    max-width: 30%;
+}
+#titleAth{
+    color: black;
+    right: 200px;
+}
+#submittion{
+    margin-left: 80%;
+}
+#contactInfo{
+    margin: 20px;
+}
