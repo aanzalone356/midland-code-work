@@ -1,3 +1,8 @@
+p{
+    text-align: center;
+    font-size: 60px;
+    color: orange;
+}
 .container{
     display: flex;
     flex-flow: row wrap;
@@ -39,11 +44,15 @@
     min-height: 100px;
     min-width: 100px;
 }
+.imgSetting:hover{
+    transform: scale(2,2);
+}
 .topBar:hover{background-color: rgb(95, 144, 187);}
 .sideItem{
     padding: 4px;
     color: aliceblue;
     text-shadow: 2px 2px black;
+    text-decoration: none;
 }
 .itemDescription{
     display: flex;
@@ -63,4 +72,8 @@
 }
 #contactInfo{
     margin: 20px;
+}
+#Sunny-D{
+    max-width: 100%;
+    text-align: center;
 }
