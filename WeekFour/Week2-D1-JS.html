@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="class1 class3">Div 1</div>
+    <div class="class2">Div 2</div>
+    <div class="class2 class4">Div 3</div>
+    <div class="class1 class4">Div 4</div>
+    <div class="class1 class2">Div 5</div>
+    <div class="class5">Div 6</div>
+    <div class="class5">Div 7</div>
+    <div class="class1 class5" id="div8">Div 8</div>
+    <div class="class5 class4" id="div9">Div 9</div>
+    <div class="class1" id="div10">Div 10</div>
+    <script>
+        "use strict";
+      //! Make the following changes in order:
+      //!    1. Every div with `.class1` should have an orange border
+      let c1Divs = document.querySelectorAll(".class1");
+      for(let i = 0; i < c1Divs.length; i++){
+        c1Divs[i].style.border = "2px solid orange";
+      }
+      //!    2. Every div with `.class3` should have red text
+      let c3Divs = document.querySelectorAll(".class3");
+      for(let i = 0; i < c3Divs.length; i++){
+        c3Divs[i].style.color = "red";
+      }
+      //!    3. Every div with `.class4` should have blue text
+      let c4Divs = document.querySelectorAll(".class4");
+      for(let i = 0; i < c4Divs.length; i++){
+        c4Divs[i].style.color = "blue";
+      }
+      //!    4. Remove `.class5` from all divs with `.class5` and replace with .class6
+      let c5Divs = document.querySelectorAll(".class5");
+      for(let i = 0; i < c5Divs.length; i++){
+        c5Divs[i].classList.replace("class5","class6");
+      }
+      //!    5. Add `.class7` to ALL divs
+      let allDivs = document.querySelectorAll("div");
+      for(let i =0; i < allDivs.length; i++){
+        allDivs[i].classList.add(`.class7`);
+      }
+      //!    6. Remove the element with `#div8`
+      let trash = document.getElementById(`div8`);
+      trash.remove();
+      //!    8. All divs with `.class2` should have a black background with white text
+      let c2Divs = document.querySelectorAll(".class2");
+      for(let i = 0; i < c2Divs.length;i++){
+        c2Divs[i].style.backgroundColor = "black";
+        c2Divs[i].style.color = "white";
+      }
+      //!    9. Take the div with `#div10` and reduce the height and width to 42% of what it was
+      let raiseHeight = document.getElementById("div10");
+      raiseHeight.style.maxHeight = "42%";
+      raiseHeight.style.maxWidth = "42%";
+      raiseHeight.id = 'div10New';
+      console.log(raiseHeight);
+      //!       (without hard-coding the number) and then change the id to `div10New`
+    </script>
+</body>
+</html>

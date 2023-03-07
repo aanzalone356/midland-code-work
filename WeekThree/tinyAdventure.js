@@ -118,6 +118,7 @@ if(forthAction.toLocaleLowerCase() == "approch them"){
     prompt(`"Ooy! You know we run this cave right?" - Pro Adventurer`);
     if(player.money > 20){
         prompt(`${player.name} the ${player.class} and The Rookie kindly pay a 5 shilling toll!`);
+        player.money = player.money - 5;
     }
     else{
         prompt(`"You boys don't have enought to pay the toll so were gonna have to rough you up a bit. It's just buisness!" - Pro Adventurer`);
