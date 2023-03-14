@@ -14,7 +14,7 @@ function drawingTracker(){
     window.addEventListener('mousedown', function (e) {
         getMousePosition(Canvas, e);
         ctx.beginPath();
-        refresh = setInterval(getMousePosition, 20);
+        refresh = setInterval(updateDrawing, 20);
       })
     window.addEventListener('mouseup', function (e) {
         x = false;
@@ -46,7 +46,7 @@ function getMousePosition(canvas, event){
 }
 
 function updateDrawing(color, x, y){
-    x = event.clientX;
+    x = x;
     y = y;
     color = color;
     ctx = Canvas.getContext("2d");// or ctx = Canvas.context
