@@ -7,77 +7,106 @@
     <title>FlexBox</title>
     <style>
         /*Feel Free to add classes and styling as you see fit.*/
-        .content {
-          border: 1px solid black;
-          background-color: #ffa500;
-          color: white;
+        .center {
+          text-align: center;
         }
         .container {
           display: flex;
           flex-flow: row wrap;
           justify-content: space-around;
         }
-        .center {
-          text-align: center;
+        .content {
+          border: 1px solid black;
+          background-color: #ffa500;
+          color: white;
+        }
+        
+        
+        .basis25{
+           flex-basis: 25%;
+        }
+        .basis50{
+           flex-basis: 50%;
+        }
+        .pixel300{
+            flex-basis: 300px;
+        }
+        .pixel200{
+            flex-basis: 200px;
+        }
+        .growYes{
+            flex-grow: 1;
+        }
+        .growNo{
+            flex-grow: 0;
+        }
+        .shrinkYes{
+            flex-shrink: 1;
+        }
+        .shrinkNo{
+            flex-shrink: 0;
+        }
+        .order1{
+            order: 1;
         }
       </style>
 </head>
 <body>
-    <h3 class="center">
+    <h3 class=" center">
         The container below should be a flex box with rows that wrap with space
         around for justifying content. Follow the instructions for each div below
         regarding styling guidelines
       </h3>
       <div class="container">
-        <div class="content center">
+        <div class="content container basis25 growYes shrinkYes">
           This div should have a basis width of: 25%, should be able to grow, and
           should be able to shrink
         </div>
-        <div class="content center">
+        <div class="content container pixel300 growNo shrinkNo">
           This div should have a basis width of: 300px, should NOT be able to
           grow, and should be NOT able to shrink
         </div>
-        <div class="content center">
+        <div class="content container pixel300 growYes shrinkYes">
           This div should have a basis width of: 300px, should be able to grow,
           and should be able to shrink
         </div>
-        <div class="content center">
+        <div class="content container pixel300 growYes shrinkYes">
           This div should have a basis width of: 300px, should be able to grow,
           and should be able to shrink
         </div>
-        <div class="content center">
+        <div class="content container basis25 growYes shrinkYes">
           This div should have a basis width of: 25%, should be able to grow, and
           should be able to shrink
         </div>
-        <div class="content center">
+        <div class="content center basis50 growYes shrinkYes">
           This div should have a basis width of: 50%, should be able to grow, and
           should be able to shrink
         </div>
-        <div class="content center">
+        <div class="content container pixelBox200 growNo shrinkNo">
           This div should have a basis width of: 200px, should NOT be able to
           grow, and should NOT be able to shrink
         </div>
-        <div class="content center">
+        <div class="content container pixelBox200 growYes shrinkYes">
           This div should have a basis width of: 200px, should be able to grow,
           and should be able to shrink
         </div>
-        <div class="content center">
+        <div class="content container pixel300 growNo shrinkYes">
           This div should have a basis width of: 300px, should NOT be able to
           grow, and should be able to shrink
         </div>
-        <div class="content center">
+        <div class="content center basis50 growYes shrinkYes">
           This div should have a basis width of: 50%, should be able to grow, and
           should be able to shrink
         </div>
-        <div class="content center">
+        <div class="content container pixelBox200 growNo shrinkYes">
           This div should have a basis width of: 200px, should NOT be able to
           grow, and should be able to shrink
         </div>
-        <div class="content center">
+        <div class="content container pixelBox200 growYes shrinkYes">
           This div should have a basis width of: 200px, should be able to grow,
           and should be NOT able to shrink
         </div>
-        <div class="content center">
+        <div class="order1 content container basis25 growYes shrinkYes">
           This div should have a basis width of: 25%, should be able to grow,
           should be able to shrink And should be the first Item
         </div>

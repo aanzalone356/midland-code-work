@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sketch Pad v1</title>
+    <script defer src = "sketchPad.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="sketchPad.css" />
+</head>
+<body >
+    <!--onmousemove="getMousePosition(event)"-->
+    <section class="container">
+        <!--This is the drawing box-->
+        <div class="container containerLeft">
+            <canvas id = "draw" class = "canvasleft"><a></a></canvas>
+        </div>
+
+        <!--This is the right side color selection area
+        This should include:
+            A change in border to indicate selected color
+            Scale to add new colors
+            The colors should be selectable to draw with-->
+        <section class="container containerRight">
+            <!--Add all color divs with JS-->
+            <div class="color" id="red"></div>
+            <div class="color" id="blue"></div>
+            <div class="color" id="green"></div>
+            
+        </section>
+    </section>
+
+    <!--This will be the color add box which will add new colors above-->
+    <section class="containerBottom">
+        <div id="colorDisplay"></div>
+        <section>
+            <div><input type="range" min="1" max="255" value="0" class="slider" id="redSlider">Red</div>
+            <div><input type="range" min="1" max="255" value="0" class="slider" id="greenSlider">Green</div>
+            <div><input type="range" min="1" max="255" value="0" class="slider" id="blueSlider">Blue</div>
+            <button onclick = "addColor(true)" id = "colorButton">Add Color</button>
+        </section>
+    </section>
+</body>
+</html>

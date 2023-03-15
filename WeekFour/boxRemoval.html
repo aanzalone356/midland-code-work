@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    .container,
+    .left,
+    .right {
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    .left {
+      flex-basis: 70%;
+    }
+
+    .right {
+      flex-basis: 30%;
+    }
+
+    .leftDiv {
+      line-height: 200px;
+      text-align: center;
+      cursor: pointer;
+      flex-basis: calc(100%/3 - 4px);
+      margin: 2px;
+      height: 200px;
+      background-color: red;
+      color: white;
+    }
+
+    .rightDiv {
+      line-height: 98px;
+      text-align: center;
+      cursor: pointer;
+      height: 118px;
+      flex-basis: calc(50% - 4px);
+      margin: 2px;
+      background-color: orange;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="leftDiv" id="l1">1</div>
+      <div class="leftDiv" id="l2">2</div>
+      <div class="leftDiv" id="l3">3</div>
+      <div class="leftDiv" id="l4">4</div>
+      <div class="leftDiv" id="l5">5</div>
+      <div class="leftDiv" id="l6">6</div>
+      <div class="leftDiv" id="l7">7</div>
+      <div class="leftDiv" id="l8">8</div>
+      <div class="leftDiv" id="l9">9</div>
+    </div>
+
+    <div class="right">
+      <div class="rightDiv" id="r1">1</div>
+      <div class="rightDiv" id="r2">2</div>
+      <div class="rightDiv" id="r3">3</div>
+      <div class="rightDiv" id="r4">4</div>
+      <div class="rightDiv" id="r5">5</div>
+      <div class="rightDiv" id="r6">6</div>
+      <div class="rightDiv" id="r7">7</div>
+      <div class="rightDiv" id="r8">8</div>
+      <div class="rightDiv" id="r9">9</div>
+    </div>
+  </div>
+  <script src="boxRemoval.js"></script>
+</body>
+
+</html>
