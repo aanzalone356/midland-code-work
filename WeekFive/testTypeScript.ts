@@ -49,3 +49,19 @@ interface Shape {
       return Math.PI * this.radius * this.radius;
     }
   }
+
+ export interface person {
+    firstName: string;
+    lastName: string;
+    age: number;
+    height: number;
+    hobbies: Array<String>;
+}
+
+let mark: person = {
+    firstName: "mark",
+    lastName: "helburg",
+    age: 22,
+    height: 6,
+    hobbies: ["reading", "writting", "skiing"],
+}

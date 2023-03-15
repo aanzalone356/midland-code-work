@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "babel-node \"testTypeScript.ts\""
+    "start": "babel-node \"WeekFive/dayTwoClassWork/commandReciver.js\""
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
