@@ -50,7 +50,7 @@ function drawingTracker(){
 function updateDrawing(e){
     let [x,y] = [(e.clientX - offsetX) * scaleX, (e.clientY - offsetY) * scaleY];
     ctx = Canvas.getContext("2d");
-    ctx.fillStyle = color;
+    ctx.strokeStyle = color;
     ctx.lineWidth = 2 * radius;
 
     //Drawing Process
