@@ -1,56 +1,65 @@
 //Canvas Script
-let Canvas = document.getElementById("draw");
+const Canvas = document.getElementById("draw");
 let ctx;
-let refresh;
-let mouseWidth;
-let mouseHeight;
 let x;
 let y;
-let color;
-let radius;
-let colorArray = [`rgb(255, 0, 0)`,`rgb(0, 255, 0)`,`rgb(0, 0, 255)`];
+let color = 'red';
+let lastX = 0;
+let lastY = 0;
+const radius = 1;
+let drawing = false;
+const colorArray = [`rgb(255, 0, 0)`,`rgb(0, 255, 0)`,`rgb(0, 0, 255)`];
+
+const rect = Canvas.getBoundingClientRect();
+const scaleX = Canvas.width / rect.width;
+const scaleY = Canvas.height /rect.height;
+const offsetX = rect.left;
+const offsetY = rect.top;
+
 
 function drawingTracker(){
     //this.Canvas.style.cursor = "none"; //hide cursor
     ctx = Canvas.getContext("2d");
     window.addEventListener('mousedown', function (e) {
-        x = e.pageX;
-        y = e.pageY;
-        ctx.beginPath();
-        refresh = setInterval(updateDrawing, 20);
-      })
+        drawing = true;
+        [lastX,lastY] = [(e.clientX - offsetX) * scaleX, (e.clientY - offsetY) * scaleY];
+        updateDrawing(e, color)
+    })
+    
+    window.addEventListener('mousemove', function(e){
+        if(drawing == true){updateDrawing(e)}
+    })
+
     window.addEventListener('mouseup', function (e) {
-        x = false;
-        y = false;
+        drawing = false;
         ctx.closePath();
-        clearInterval(refresh);
     })
     
     //For touch screens or drawing pads
     window.addEventListener('touchstart', function (e) {
-        x = e.pageX;
-        y = e.pageY;
-        ctx.beginPath();
-        refresh = setInterval(updateDrawing, 20);
+        drawing = true;
+        [lastX,lastY] = [(e.clientX - offsetX) * scaleX, (e.clientY - offsetY) * scaleY];
+        updateDrawing(e, color)
     })
     window.addEventListener('touchend', function (e) {
-        x = false;
-        y = false;
+        drawing = false;
         ctx.closePath();
-        clearInterval(refresh);
     })
 }
 
-function updateDrawing(color, x, y){
-    x = x;
-    y = y;
-    color = color;
-    radius = 1;
-    ctx = Canvas.getContext("2d");// or ctx = Canvas.context
+function updateDrawing(e){
+    let [x,y] = [(e.clientX - offsetX) * scaleX, (e.clientY - offsetY) * scaleY];
+    ctx = Canvas.getContext("2d");
     ctx.fillStyle = color;
-    ctx.arc(x,y,r,0,2*Math.PI);
-    ctx.fill();
-    
+    ctx.lineWidth = 2 * radius;
+
+    //Drawing Process
+    console.log(`${color} color ${x} ${y}`)
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    [lastX, lastY] = [x, y];
 }
 
 
@@ -70,8 +79,8 @@ function addColor(colorValue){
     for(let i = 0;i < allColors.length; i++){
         allColors[i].style.backgroundColor = colorArray[i];
         allColors[i].addEventListener('click', () => {
-            updateDrawing(colorArray[i]);
-            allColors[i].style.opacity = 1;
+            console.log(color = allColors[i].style.backgroundColor);
+            color = allColors[i].style.backgroundColor;
         })
     }
 }

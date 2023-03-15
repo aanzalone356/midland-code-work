@@ -5,14 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sketch Pad v1</title>
-    <script src = "sketchPad.js"></script>
+    <script defer src = "sketchPad.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="sketchPad.css" />
 </head>
-<body>
+<body >
+    <!--onmousemove="getMousePosition(event)"-->
     <section class="container">
         <!--This is the drawing box-->
         <div class="container containerLeft">
-            <canvas id = "draw" class = "canvasleft"></canvas>
+            <canvas id = "draw" class = "canvasleft"><a></a></canvas>
         </div>
 
         <!--This is the right side color selection area
@@ -33,9 +34,9 @@
     <section class="containerBottom">
         <div id="colorDisplay"></div>
         <section>
-            <div><input type="range" min="1" max="255" value="0" class="slider" id="redSlider"></div>
-            <div><input type="range" min="1" max="255" value="0" class="slider" id="blueSlider"></div>
-            <div><input type="range" min="1" max="255" value="0" class="slider" id="greenSlider"></div>
+            <div><input type="range" min="1" max="255" value="0" class="slider" id="redSlider">Red</div>
+            <div><input type="range" min="1" max="255" value="0" class="slider" id="greenSlider">Green</div>
+            <div><input type="range" min="1" max="255" value="0" class="slider" id="blueSlider">Blue</div>
             <button onclick = "addColor(true)" id = "colorButton">Add Color</button>
         </section>
     </section>

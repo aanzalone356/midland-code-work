@@ -21,6 +21,8 @@
     flex-direction: column;
     flex-basis: calc(10% / 2 - 5px);
     justify-content: flex-start;
+    position: fixed;
+    right: 50px;
 }
 
 .containerBottom{
@@ -72,6 +74,7 @@
     margin-left: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
+    margin-right: 5px;
 }
 
 .slider::-webkit-slider-thumb {
