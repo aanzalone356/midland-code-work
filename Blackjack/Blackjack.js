@@ -1,3 +1,5 @@
+'use strict';
+
 let deck = [];
 let playDeck = [];
 let playerBase = [];
@@ -36,6 +38,7 @@ class player{
         this.name = name;
         this.cards = [card1,card2];
         this.op = op;
+        this.total = 0;
     }
     flipCards(playerID){
         if(playerID == `house`){
@@ -59,10 +62,25 @@ class player{
         }
     }
     addCard(){
-        this.cards.push(dealCard());
+        this.cards.push(dealCard(this.op));
     }
     getID(){
         return this.playerID;
+    }
+    getCardsVal(){
+        this.total = 0;
+        try{
+           for(let i=0;i<this.cards.length;i++){
+            let temp = this.cards[i].getValue();
+            this.total = this.total + temp;
+            console.log(`total = ${this.total} temp = ${temp}`);
+        }
+        return this.total; 
+        }
+        catch(Error){
+            console.log(Error);
+        }
+        
     }
 }
 
@@ -75,11 +93,11 @@ function playerMaker(playerNum,name){
     //add the players info from the InnerHtml
     //let (2 cards => dealCard()) = [];
     //give them an op boolean if true that is the house
-    playerBase.push(new player(0,name,dealCard(),dealCard(),true));
+    playerBase.push(new player(0,name,dealCard(),dealCard(),false));
     for(let i = 0;i < playerNum;i++){
         playerBase.push(new player(i+1,"none",dealCard(),dealCard(),false));
     } 
-    playerBase.push(new player(4,`house`,dealCard(),dealCard(),false));
+    playerBase.push(new player(4,`house`,dealCard(true),dealCard(true),true));
     console.log(playerBase);
 }
 
@@ -88,10 +106,11 @@ class Card {
         this.cardID = cardID;
         this.value = value;
         this.suit = suit;
-        this.img = cardImgArr[cardID];
+        this.img = cardImgArr[(cardID-1)];
         this.face = face;
     }
     getImg(){
+        console.log(`CardID: ${this.cardID} Value: ${this.value}`);
         return this.img;
     }
     getValue(){
@@ -108,27 +127,41 @@ class Ace extends Card {
         super(cardID,value,suit,face);
     }
 
-    valueInput(){
-        let temp = prompt(`Hey you have an ACE! Did you want to make that a value of 1 or 11?`);
-        let x = 0;
-        while(temp !== 1 || temp !== 11){
-            temp = prompt(`The Ace is value please be serious! 1 or 11`);
-            temp = parseInt(temp);
-            console.log(temp);
-            x++;
-            if(x > 3){
-                temp = 11;
-            }
+    valueInput(op){
+        if(op == true){
+            this.value = 11;
         }
+        else if(op == false){
+            let temp = prompt(`Hey you have an ACE! Did you want to make that a value of 1 or 11?`);
+            let x = 0;
+            let loopBreak = false;
+            while(loopBreak == false){
+                temp = prompt(`The Ace is value please be serious! 1 or 11`);
+                temp = parseInt(temp);
+                if(temp == 1 || temp == 11){
+                 loopBreak = true;
+                }
+            }
         this.value = temp;
+        }
+        
     }
 }
 
-function checkAce(card){
-    let face = card.getFace();
-    if(face == `Ace`){
-        card.valueInput();
+function checkAce(card,house){
+    try{
+        let face = card.getFace();
+        if(face == `Ace` && house == false){
+            card.valueInput(false);
+        }
+        else if(face == `Ace` && house == true){
+            card.valueInput(true);
+        } 
     }
+    catch(Error){
+        console.log(Error);
+    }
+    
 }
 
 function deckMaker(deckNum){
@@ -146,9 +179,8 @@ function deckMaker(deckNum){
         for(let i = 0;i < 4;i++){
             let currentSuit = suits.pop();
             for(let z = 0;z < 9;z++){
-                countID++;
-                let value = z+2;
-                console.log(`${value} = value ${countID} = countID`);
+                countID++;   
+                console.log(`${z+2} = value ${countID} = countID`);
                 deck.push(new Card(countID,(z+2),currentSuit));
             }
             countID = faceCard(countID,currentSuit);
@@ -189,14 +221,14 @@ function shuffle(){
     console.log(playDeck);
 }
 
-function dealCard(){
+function dealCard(house){
     //This should get a random num from 1 - (Max card Size)
     //Deal this card to the player 
     //Remove the card from the playDeck
     let random = Math.floor(Math.random() * playDeck.length);
     let draw = playDeck[random];
     delete playDeck[random];
-    checkAce(draw);
+    checkAce(draw,house);
 
     return draw;
 }
@@ -204,26 +236,18 @@ function dealCard(){
 function hit(playerID){
     for(let i = 0;i < playerBase.length;i++){
         if(playerBase[i].playerID == playerID){
-            let player = playerBase[i];
-            let cards = player.cards;
-            console.log(cards.length);
-            let total = 0;
-            for(let i=0;i<cards.length;i++){
-                let temp = cards[i].getValue();
-                total = total + temp
-                console.log(`total = ${total} temp = ${temp}`);
-            }
+            let temp = playerBase[i].getCardsVal();
             //console.log(total);
-            if(total > 21){
+            if(temp > 21){
                 prompt(`You've hit 21 already!`)
             }
-            else if(total < 21){
-                player.addCard();
+            else if(temp < 21){
+                playerBase[i].addCard();
                 if(playerID == 0){
                     playerBase[i].flipCards(0);
                 }
             }
-            return total;
+            return temp;
         }
     }
 }
@@ -233,15 +257,11 @@ function stay(){
     let totalScores = [];
     let cards;
     //Totals all players cards
+    console.log(`${playerBase.length} pl.l 248`)
     if(playerBase.length > 2){
         for(let i = 1; i < playerBase.length-2;i++){
             let player = playerBase[i];
-            cards = player.cards;
-            for(let i = 0; i < cards.length;i++){
-                let temp = cards[i].getValue();
-                total = total + temp
-                console.log(`stay ${total} 1`);
-            }
+            let total = player.getCardsVal();
             while(total < 17){
                 total = hit(player.playerID);
                 if(playerID == 1){
@@ -253,22 +273,16 @@ function stay(){
             }
             totalScores.push(total);
         }
+        console.log(`CPU`);
     }
-    console.log(`CPU`);
     //TODO add wait
     //Display all player cards and house cards
     //Deals house face up
     document.getElementById(`house`).innerHTML = ``;
     let house = playerBase[playerBase.length-1];
-    cards = house.cards;
-    total = 0;
-    for(let i = 0; i < cards.length;i++){
-        let temp = cards[i].getValue();
-        total = total + temp
-        console.log(`stay ${total} 2 - cards ${cards} - temp ${temp}`);
-    }
+    total = house.getCardsVal();
     while(total < 17){
-        total = hit(house.playerID);
+        total = hit(house.playerID,true);
         house.flipCards(`house`);
         console.log(`h ${total}`);
     }
@@ -277,25 +291,29 @@ function stay(){
         house.flipCards(`house`);
         console.log(`house complete`);
     }
+    totalScores.push(playerBase[0].getCardsVal())
+    console.log(totalScores);
     //Score totaler
-    let newTotal;
+    let newTotal = 0;
     for(let i = 0; i < playerBase.length - 1;i++){
-        if(total[i] < total[i+1] && total[i+1] < 22){
-            newTotal = total[i+1];
+        console.log(`${totalScores[i]} t1 ${totalScores[i+1]} t2`)
+        if(totalScores[i] < totalScores[i+1] && totalScores[i+1] < 22){
+            newTotal = totalScores[i+1];
+            console.log(`${newTotal} newT`)
         }
-        else if(total[i] > total[i+1] && total[i] < 22){
-            newTotal = total[i];
+        else if(totalScores[i] > totalScores[i+1] && totalScores[i] < 22){
+            newTotal = totalScores[i];
+            console.log(`${newTotal} newT 293`)
+        }
+        else{
+            popScreen(2,false);
         }
     }
     //TODO for the player array look who as the cards that add up to newTotal and give ther playerID
+    console.log(`${newTotal} newT 293`)
     for(let i = 0;i < playerBase.length;i++){
         let player = playerBase[i];
-        cards = player.cards;
-        total = 0;
-        for(let i = 0; i < cards.length;i++){
-            let temp = cards[i].getValue();
-            total = total + temp
-        }
+        total = player.getCardsVal();
         if(total == newTotal){
             let playerID = player.getID();
             popScreen(2,playerID);
@@ -309,15 +327,17 @@ function ageFinder(day,month,year){
     let dayCur = String(today.getDate()).padStart(2, '0');
     let monthCur = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     let yearCur = today.getFullYear();
-    //console.log(`${year} year ${yearCur} cur`);
-    if(year == (yearCur-21) && day < dayCur && month == monthCur){
+    console.log(`${year} ${day} ${month} year ${monthCur} cur`);
+    if(year == parseInt(yearCur)-21 && day < parseInt(dayCur) && month == parseInt(monthCur)){
         playerMaker(document.getElementById(`CPU`).value, document.getElementById(`userName`).value);
+        return true;
     }
     else if(year < (yearCur-21)){
         playerMaker(document.getElementById(`CPU`).value, document.getElementById(`userName`).value);
+        return true;
     }
     else{
-        popScreen(4);
+        return false;
     }
 }
 function popScreen(value, playerID){
@@ -364,12 +384,14 @@ function popScreen(value, playerID){
     else if(value == 2){
         //Final winning screen or JackPot!!!!
         let winner = playerID;
+        prompt(`Winner is ${winner}`);
         if(winner == false){
             //everyone lost
+            prompt(`Winner is one loser is everyone}`);
         }
     }
     else if(value == 4){
-        //Kick out User under 18
+        document.getElementById(`topSection`).innerHTML = `Sorry you're under age Please come back after you've turned 21`;
     }
     else{
         console.log(Error);
@@ -381,8 +403,13 @@ function popScreen(value, playerID){
 function play(){
     deckMaker(1); //Get deck count from start screen
     shuffle();
-    ageFinder(document.getElementById("birthDay").value, document.getElementById("birthMonth").innerHTML, document.getElementById("birthYear").value);
-    popScreen(1);//Value should change for which screen should be poped
+    let valid = ageFinder(document.getElementById("birthDay").value, document.getElementById("birthMonth").value, document.getElementById("birthYear").value);
+    if(valid == true){
+        popScreen(1);
+    }
+    else if(valid == false){
+        popScreen(4);
+    }
 }
 
 function redraw(){
