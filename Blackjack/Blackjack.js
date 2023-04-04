@@ -264,10 +264,10 @@ function stay(){
             let total = player.getCardsVal();
             while(total < 17){
                 total = hit(player.playerID);
-                if(playerID == 1){
+                if(player.playerID == 1){
                     document.getElementById(`Player1`).append(makeCardBack())
                 }
-                else if(playerID == 2){
+                else if(player.playerID == 2){
                     document.getElementById(`Player2`).append(makeCardBack())
                 }
             }
@@ -295,30 +295,45 @@ function stay(){
     console.log(totalScores);
     //Score totaler
     let newTotal = 0;
-    for(let i = 0; i < playerBase.length - 1;i++){
-        console.log(`${totalScores[i]} t1 ${totalScores[i+1]} t2`)
-        if(totalScores[i] < totalScores[i+1] && totalScores[i+1] < 22){
-            newTotal = totalScores[i+1];
-            console.log(`${newTotal} newT`)
-        }
-        else if(totalScores[i] > totalScores[i+1] && totalScores[i] < 22){
-            newTotal = totalScores[i];
-            console.log(`${newTotal} newT 293`)
-        }
-        else{
-            popScreen(2,false);
+    for(let i = 0; i < totalScores.length;i++){
+        if(totalScores[i] < 22){
+            newTotal = compareScore(totalScores[i],newTotal);
+            console.log(`${newTotal} newT`);
         }
     }
     //TODO for the player array look who as the cards that add up to newTotal and give ther playerID
-    console.log(`${newTotal} newT 293`)
+    console.log(`${newTotal} newT 305`)
+    let winner = [];
     for(let i = 0;i < playerBase.length;i++){
         let player = playerBase[i];
         total = player.getCardsVal();
         if(total == newTotal){
             let playerID = player.getID();
-            popScreen(2,playerID);
-            prompt(`${playerID}`);
+            winner.push(playerID);
         }
+    }
+    if(winner.length > 1){
+        popScreen(2,winner,true);
+        prompt(`${winner}`);
+    }
+    else if(winner.length == 1){
+        popScreen(2,winner);
+        prompt(`${winner}`);
+    }
+    else{
+        
+    }
+}
+
+function compareScore(val1, val2){
+    if(val1 > val2){
+        return val1;
+    }
+    else if(val1 < val2){
+        return val2;
+    }
+    else{
+        return 0;
     }
 }
 
@@ -340,7 +355,7 @@ function ageFinder(day,month,year){
         return false;
     }
 }
-function popScreen(value, playerID){
+function popScreen(value, playerID, tie){
     if(value == 0){
         //Make buttons and divs, besides the info tags, invisible
     }
@@ -385,9 +400,12 @@ function popScreen(value, playerID){
         //Final winning screen or JackPot!!!!
         let winner = playerID;
         prompt(`Winner is ${winner}`);
-        if(winner == false){
+        if(tie == false){
             //everyone lost
             prompt(`Winner is one loser is everyone}`);
+        }
+        else if(tie == true){
+            prompt(`Its a tie}`);
         }
     }
     else if(value == 4){
