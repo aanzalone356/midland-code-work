@@ -20,16 +20,7 @@ for(let i = 0;i<52;i++){
 }
 console.log(cardImgArr);
 
-
-//TODO: redraw()
 //TODO: final CSS
-
-function makeCardBack(){
-    let cardBack = new Image(150,200);
-    cardBack.src = `PNG-cards-1.3/backSide.jpg`;
-
-    return cardBack;
-}
 
 class player{
     //
@@ -43,12 +34,14 @@ class player{
     flipCards(playerID){
         if(playerID == `house`){
             for(let i=0;i<this.cards.length;i++){
+                console.log(this.cards[i].getImg());
                 let tempCard = this.cards[i].getImg();
                 document.getElementById(`house`).appendChild(tempCard);
             } 
         }
         else if(playerID == 0){
             for(let i=0;i<this.cards.length;i++){
+                console.log(this.cards[i].getImg());
                 let tempCard = this.cards[i].getImg();
                 document.getElementById(`userC`).appendChild(tempCard);
             }
@@ -82,6 +75,9 @@ class player{
         }
         
     }
+    getName(){
+        return this.name;
+    }
 }
 
 function playerMaker(playerNum,name){
@@ -111,6 +107,12 @@ class Card {
     }
     getImg(){
         console.log(`CardID: ${this.cardID} Value: ${this.value}`);
+        try{
+            console.log(this.img);
+        }
+        catch(Error){
+            console.log(Error);
+        }
         return this.img;
     }
     getValue(){
@@ -132,7 +134,7 @@ class Ace extends Card {
             this.value = 11;
         }
         else if(op == false){
-            let temp = prompt(`Hey you have an ACE! Did you want to make that a value of 1 or 11?`);
+            let temp = 0;
             let x = 0;
             let loopBreak = false;
             while(loopBreak == false){
@@ -146,6 +148,13 @@ class Ace extends Card {
         }
         
     }
+}
+
+function makeCardBack(){
+    let cardBack = new Image(150,200);
+    cardBack.src = `PNG-cards-1.3/backSide.jpg`;
+
+    return cardBack;
 }
 
 function checkAce(card,house){
@@ -227,8 +236,8 @@ function dealCard(house){
     //Remove the card from the playDeck
     let random = Math.floor(Math.random() * playDeck.length);
     let draw = playDeck[random];
-    delete playDeck[random];
     checkAce(draw,house);
+    delete playDeck[random];
 
     return draw;
 }
@@ -262,7 +271,7 @@ function stay(){
         for(let i = 1; i < playerBase.length-2;i++){
             let player = playerBase[i];
             let total = player.getCardsVal();
-            while(total < 17){
+            while(player.getCardsVal() < 17){
                 total = hit(player.playerID);
                 if(player.playerID == 1){
                     document.getElementById(`Player1`).append(makeCardBack())
@@ -270,6 +279,11 @@ function stay(){
                 else if(player.playerID == 2){
                     document.getElementById(`Player2`).append(makeCardBack())
                 }
+            }
+            if(player.getCardsVal() >= 17){
+                totalScores.push(total);
+                house.flipCards(`player`);
+                console.log(`player complete`);
             }
             totalScores.push(total);
         }
@@ -281,12 +295,12 @@ function stay(){
     document.getElementById(`house`).innerHTML = ``;
     let house = playerBase[playerBase.length-1];
     total = house.getCardsVal();
-    while(total < 17){
+    while(house.getCardsVal() < 17){
         total = hit(house.playerID,true);
         house.flipCards(`house`);
         console.log(`h ${total}`);
     }
-    if(total >= 17){
+    if(house.getCardsVal() >= 17){
         totalScores.push(total);
         house.flipCards(`house`);
         console.log(`house complete`);
@@ -314,14 +328,12 @@ function stay(){
     }
     if(winner.length > 1){
         popScreen(2,winner,true);
-        prompt(`${winner}`);
     }
     else if(winner.length == 1){
         popScreen(2,winner);
-        prompt(`${winner}`);
     }
     else{
-        
+        popScreen(2,winner,false);
     }
 }
 
@@ -337,6 +349,7 @@ function compareScore(val1, val2){
     }
 }
 
+//Inital Functions
 function ageFinder(day,month,year){
     let today = new Date();
     let dayCur = String(today.getDate()).padStart(2, '0');
@@ -363,10 +376,14 @@ function popScreen(value, playerID, tie){
         //displays user cards face up and all other cards face down
         //pops two buttons hit() and stay()
         //and a deck img in the middle
+        document.getElementById(`redraw`).style.opacity = 100;
+        document.getElementById(`hit`).style.opacity = 100;
+        document.getElementById(`stay`).style.opacity = 100;
         document.getElementById(`topSection`).innerHTML = ``;
         let count = 0;
         let player = playerBase[0];
         let cards = player.cards;
+        console.log(cards[0].getImg());
         let cardI1 = cards[0].getImg();
         let cardI2 = cards[1].getImg();
         document.getElementById("userC").appendChild(cardI1);
@@ -399,13 +416,40 @@ function popScreen(value, playerID, tie){
     else if(value == 2){
         //Final winning screen or JackPot!!!!
         let winner = playerID;
-        prompt(`Winner is ${winner}`);
-        if(tie == false){
-            //everyone lost
-            prompt(`Winner is one loser is everyone}`);
+        if(tie == true){
+            let winner1 = ``;
+            let winner2 = ``;
+            for(let i=0;i<playerBase.length;i++){
+                if(playerBase[i].getID() == winner[0]){
+                    winner1 = playerBase[i].getName();
+                 }
+                else if(playerBase[i].getID() == winner[1]){
+                    winner2 = playerBase[i].getName();
+                }
+            }
+            
+            document.getElementById(`midText`).innerHTML = `We have a tie! ${winner[0]} and ${winner[1]}`;
         }
-        else if(tie == true){
-            prompt(`Its a tie}`);
+        else if(tie == false){
+            document.getElementById(`midText`).innerHTML = `One Moment please`;
+            try{
+                stay()
+            }
+            catch(Error){
+                console.log(Error); 
+            }
+        }
+        else{
+            if(winner[0] == 0){
+                console.log(playerBase[0].getName());
+                document.getElementById(`midText`).innerHTML = `Winner is You!`;
+            }
+            else if(winner[0] == 4){
+                document.getElementById(`midText`).innerHTML = `Winner is house!`;
+            }
+            else{
+                document.getElementById(`midText`).innerHTML = `Winner is ${playerBase[winner[0]].getName()}!`;
+            }
         }
     }
     else if(value == 4){
@@ -420,33 +464,37 @@ function popScreen(value, playerID, tie){
 //Main Functions
 function play(){
     deckMaker(1); //Get deck count from start screen
-    shuffle();
+    setTimeout(shuffle(), 5000);
     let valid = ageFinder(document.getElementById("birthDay").value, document.getElementById("birthMonth").value, document.getElementById("birthYear").value);
     if(valid == true){
-        popScreen(1);
+        setTimeout(popScreen(1), 5000);
     }
     else if(valid == false){
-        popScreen(4);
+        setTimeout(popScreen(4), 5000);
     }
 }
 
 function redraw(){
+    document.getElementById(`house`).innerHTML = ``;
+    document.getElementById(`Player1`).innerHTML = ``;
+    document.getElementById(`Player2`).innerHTML = ``;
+    document.getElementById(`userC`).innerHTML = ``;
+    document.getElementById(`midText`).innerHTML = ``;
     if(playDeck.length < playerBase.length * 3){
         deckMaker();
-        shuffle();
-        //for each player erase cards and give two new cards
+        setTimeout(shuffle(0), 5000);
         for(let i=0;i<playerBase.length;i++){
             let cardsFull = playerBase[i];
             cardsFull.cards = [dealCard(),dealCard()];
         }
-        popScreen(1)
+        setTimeout(popScreen(1), 5000);
     }
     else if(playDeck.length > playerBase.length * 3){
         for(let i=0;i<playerBase.length;i++){
             let cardsFull = playerBase[i];
             cardsFull.cards = [dealCard(),dealCard()];
         }
-        popScreen(1)
+        setTimeout(popScreen(1), 5000);
     }
 }
 

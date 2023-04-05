@@ -43,6 +43,7 @@
 }
 .button{
     /**/
+    opacity: 0;
 }
 .card{
     /**/
@@ -71,4 +72,7 @@
 }
 .houseLeft{
     margin-left: calc(30%);
+}
+#start{
+    opacity: 100;
 }
