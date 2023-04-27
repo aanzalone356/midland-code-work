@@ -50,8 +50,8 @@ function drawingTracker(){
 function updateDrawing(e){
     let [x,y] = [(e.clientX - offsetX) * scaleX, (e.clientY - offsetY) * scaleY];
     ctx = Canvas.getContext("2d");
-    ctx.fillStyle = color;
-    ctx.lineWidth = 2 * radius;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 6 * radius;
 
     //Drawing Process
     console.log(`${color} color ${x} ${y}`)
@@ -79,8 +79,15 @@ function addColor(colorValue){
     for(let i = 0;i < allColors.length; i++){
         allColors[i].style.backgroundColor = colorArray[i];
         allColors[i].addEventListener('click', () => {
-            console.log(color = allColors[i].style.backgroundColor);
+            //console.log(color = allColors[i].style.backgroundColor);
             color = allColors[i].style.backgroundColor;
+            changeBack = document.querySelectorAll(".color");
+            for(let z =0; z< changeBack.length;z++){
+                changeBack[z].style.opacity = 0.75;
+                changeBack[z].style.border = "2px solid black";
+            }
+            allColors[i].style.opacity = 1;
+            allColors[i].style.border = "2px solid white";
         })
     }
 }

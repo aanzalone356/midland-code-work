@@ -1,0 +1,31 @@
+header{
+    color: blue;
+    border: 2px solid black;
+}
+.center{
+    text-align: center;
+    font-size: 30px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 calc(100% - 10pxs);
+    border: 4px dotted black;
+    color: rgb(160, 94, 94);
+}
+.containerMid{
+    flex-direction: row;
+    flex: 1 1 calc(100%-20px);
+    justify-content: center;
+    border: 1px solid black;
+}
+.search{
+    height: 30px;
+    width: 200px;
+    margin-left: 20px;
+}
+.button{
+    height: 30px;
+    margin: 10px;
+}

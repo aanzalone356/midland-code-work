@@ -1,0 +1,78 @@
+.conatiner{
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 100%;
+}
+.containerTop{
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 100%;
+    max-height: calc(50%-5px);
+    justify-content: center;
+    margin: 40px;
+}
+.containerMid{
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 calc(100% / 2 - 10px);
+    justify-content: center;
+}
+
+.conatinerBottom{
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 calc(100% - 10px);
+    max-height: calc(50%-5px);
+    justify-content: center;
+    margin: 40px;
+}
+.divTop{
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 calc(100% / 3 - 5px);
+}
+.divMid{
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 calc(100% / 3 - 5px);
+}
+.divBottom{
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 calc(100% / 3 - 5px);
+}
+.button{
+    /**/
+    opacity: 0;
+}
+.card{
+    /**/
+    margin: 20px;
+}
+.label{
+    /**/
+    margin: 10px;
+}
+.text{
+    /**/
+    margin-left: 30px;
+    text-align: center;
+}
+.info{
+    /**/
+    margin-left: 2%;
+    max-height: 40px;
+}
+.inline{
+    flex-basis: 50%;
+    height: 0;
+}
+#userName{
+    margin-left: 20%;
+}
+.houseLeft{
+    margin-left: calc(30%);
+}
+#start{
+    opacity: 100;
+}

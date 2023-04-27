@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Finder</title>
+    <script src = "movieFinder.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="movieFinder.css" />
+</head>
+<body>
+    <header class= "center">Welcome to the Movie Finder site</header>
+    <section class="center container">
+        <div class="center">Below are a couple of options for searching a movie. Check them out and the info you need will be at the bottom of the page!</div>
+        <section class="container containerMid">
+           <div>
+                <input class="search" type="search" id="searchBox" placeholder="Input a Movie Title">
+            </div>
+            <div>
+                <input class="search" type="search" id="yearBox" placeholder="Enter a year for a show">
+            </div>
+            <div>
+                <select name="showFormat" id="showFormat" class="search">
+                    <option value="movie">Movie</option>
+                    <option value="series">Series</option>
+                    <option value="episode">Episodes</option>
+                </select>
+                <input class="button" type="button" onclick= 'urlBuilder()' id="showSearch" value="Enter">
+            </div> 
+        </section>
+        <section>
+            <!--This is for the retreavied info-->
+            <div id="infoLoader"></div>
+        </section>
+    </section>
+</body>
+</html>
