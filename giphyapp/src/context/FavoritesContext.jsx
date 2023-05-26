@@ -17,10 +17,6 @@ export function FavoritesProvider(props) {
 
     const [favorites, dispatch] = useReducer(favoritesReducer, INITIAL_FAVORITES_STATE);
 
-    useEffect(() => {
-      console.log(favorites);
-    },[favorites])
-
     const addFavorite = useCallback(
         (gif) => dispatch({ type: ADD_FAVORITE, payload: gif}),
         [dispatch]

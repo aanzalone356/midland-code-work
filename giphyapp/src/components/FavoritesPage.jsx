@@ -4,9 +4,8 @@ import Container from "../styled/elements/Container";
 import GifDisplay from "./GifDisplay";
 import { useFavoritesContext } from '../context/FavoritesContext';
 
-const {favorites, removeFavorite} = useFavoritesContext;
-
-const FavoritesPage = () => {
+const FavoritesPage = (props) => {
+    const {favorites, removeFavorite} = useFavoritesContext();
 
     useEffect(() => {
         console.log(favorites);
@@ -27,6 +26,7 @@ const FavoritesPage = () => {
                     url={value.url} 
                     removeFavorite={removeFavorite}                    
                     isFavorite={true}
+                    data-testid='favorites'
                 />)
             })}
         </Container>

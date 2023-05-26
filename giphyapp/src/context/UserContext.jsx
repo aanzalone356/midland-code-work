@@ -16,12 +16,12 @@ export const UserProvider = (props) => {
   const [user, dispatch] = useReducer(userReducer, INITIAL_USER_STATE);
 
   const setUser = useCallback(
-    (user) => dispatch({ type: SET_USER, payload: user }),
+    (user) => dispatch({type: SET_USER, payload: user }),
     [dispatch]
   );
 
   const clearUser = useCallback(() => {
-    dispatch({ type: CLEAR_USER });
+    dispatch({ type: CLEAR_USER })
   }, [dispatch]
   );
 

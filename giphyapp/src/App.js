@@ -1,6 +1,6 @@
 import './App.css';
 import Menu from './components/Menu';
-import HomePage from './components/HomePage';
+import {HomePageWithAuth} from './components/ProtectedRoutes';
 import {LoginPageWithAuth} from './components/ProtectedRoutes';
 import {SearchPageWithAuth} from './components/ProtectedRoutes';
 import {FavoritesPageWithAuth} from './components/ProtectedRoutes';
@@ -16,7 +16,7 @@ function App() {
     <Router>
       <Menu />
       <Routes>
-        <Route path='/' exact element={<HomePage />} />
+        <Route path='/' exact element={<HomePageWithAuth />} />
         <Route path='/Login' element={<LoginPageWithAuth />} />
         <Route path='/Search' element={<SearchPageWithAuth />} />
         <Route path='/FavortiesPage' element={<FavoritesPageWithAuth />} />

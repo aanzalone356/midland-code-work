@@ -2,7 +2,6 @@ import React, { useState, useEffect} from "react";
 import InfoBox from '../styled/elements/InfoBox';
 import Button from '../styled/elements/Button';
 import Container from '../styled/elements/Container';
-import { useUserContext } from "../context/UserContext";
 import Text from "../styled/elements/Text";
 import getGifs from "../functions/getMyGifs";
 import { useQuery } from "react-query";
@@ -12,7 +11,6 @@ import GifDisplay from "./GifDisplay";
 import isFavorite from '../functions/isFavorite';
 
 const Search = () => {
-    const {user} = useUserContext();
     const [searchTerm, setSearchTerm] = useState('');
     const [url, setUrl] = useState('');
     const [ran, setRan] = useState('');
@@ -38,7 +36,7 @@ const Search = () => {
           <Text>What Gif are you looking for?</Text>
           <Container>
               <InfoBox id="searchBox" placeholder="Search a Gif!" onChange={(e) => {setSearchTerm(e.target.value)}}></InfoBox>
-              <Button onClick={() => {setUrl(`q=${searchTerm}&rating=g&lang=en`)}}>Search</Button>
+              <Button data-testid="Search" onClick={() => {setUrl(`q=${searchTerm}&rating=g&lang=en`)}}>Search</Button>
               <Button onClick={() => {
                 setUrl(`q=${searchTerm}&rating=g&lang=en`);
                 setRan(true);
@@ -55,8 +53,7 @@ const Search = () => {
                 removeFavorite={removeFavorite}
                 isFavorite={() => {isFavorite(val.url, favorites)}}
                 />
-            ))
-          }
+            ))}
       </Container>
     )
 };

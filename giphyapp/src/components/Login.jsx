@@ -33,7 +33,7 @@ function Login () {
             </Container>
             <InfoBox placeholder='Username' onChange={(e)=>handleInput(e,'username')}></InfoBox>
             <InfoBox placeholder='Password' onChange={(e)=>handleInput(e,'password')}></InfoBox>
-            <Button onClick={()=>setupUser()}>Login</Button>
+            <Button data-testid='button' onClick={()=>setupUser()}>Login</Button>
         </Container>
     )
 }
