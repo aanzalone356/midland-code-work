@@ -16,7 +16,7 @@ app.use(express.json());
 //secret is the secret key (usually in the .env)
 //resave saves the session to the storeeven if the session wasn't modifies
 //saveUninitialized saves it
-app.use(session({ secret: 'secert', resave: false, saveUninitialized: true}))
+app.use(session({ secret: 'secret', resave: false, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -71,6 +71,7 @@ passport.deserializeUser(function(id, done) {
   });
 
 app.post('/login', passport.authenticate('local'), (req,res) => {
+    console.log('hit');
     res.status(200).send({success: "User logged in"});
     // const username = req.body.username;
     // connection.query("SELECT * FROM users WHERE users.username = ? ", [username],
