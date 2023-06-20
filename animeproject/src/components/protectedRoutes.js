@@ -4,12 +4,13 @@ import { RandomAnime } from "./randomAnime";
 import { UserAnimeList } from "./animeList";
 import { useLoginContext } from "../context/loginContext";
 import { Navigate } from "react-router-dom";
+import login from '../components/login';
 
 const withAuthentication = (WrappedComponent, requiresUser) => {
     return(props) => {
         const {user} = useLoginContext();
 
-        const redirectTo = useMemo(() => (requiresUser ? '/login' : '/animeList'), []);
+        const redirectTo = useMemo(() => (requiresUser ? "/login" : "/animeList"), []);
 
         const authorized = useMemo(() => {
             return (!requiresUser && !user) || (requiresUser && user);}, [user]);
@@ -25,3 +26,4 @@ const withAuthentication = (WrappedComponent, requiresUser) => {
 export const MainPageWithAuth = withAuthentication(MainPage, false);
 export const AnimeListWithAuth = withAuthentication(UserAnimeList, true);
 export const RandomAnimeWithAuth = withAuthentication(RandomAnime, false);
+export const LoginWithAuth = withAuthentication(login, false)

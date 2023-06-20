@@ -8,6 +8,7 @@ import{
   BrowserRouter as Router,
   Routes,
   Route,
+  Navigate,
 } from 'react-router-dom'
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/Login' element={<LoginPageWithAuth />} />
         <Route path='/Search' element={<SearchPageWithAuth />} />
         <Route path='/FavortiesPage' element={<FavoritesPageWithAuth />} />
+        <Route path='*' element={<Navigate to='/' />} />
       </Routes>
     </Router>  
   );

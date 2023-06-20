@@ -6,6 +6,6 @@ import { useRandomAnimeContext } from "../context/randomAnimeContext";
 export function RandomAnime() {
     //
     return(
-        <div></div>
+        <div>Test Render</div>
     );
 };

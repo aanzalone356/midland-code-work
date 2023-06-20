@@ -1,7 +1,28 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useContext} from "react";
+import axios from "axios";
 import Button from "../styled/elements/Button";
 
 const GifDisplay = ({url, title, gif_id, image, addFavorite, removeFavorite, isFavorite}) => {
+    const [currentGif, setCurrentGif] = useContext('');
+    //should be brought to larger context
+    const [favorites, setFavoritesList] = useContext('');
+
+    const loadFavorites = async (e,props) => {
+        e.preventDefault();
+
+        try{
+            const response = await axios.get('http://localhost:3006/favorites');
+
+            if(response.status === 200) {
+                setFavoritesList(response);
+            } else{
+                console.error("Error Loading Favorites");
+            }
+
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     useEffect(() => {
         console.log(isFavorite);

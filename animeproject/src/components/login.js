@@ -1,7 +1,9 @@
 import {React, useContext, useRef} from "react";
 import { useLoginContext } from "../context/loginContext";
 import { TextField } from "@mui/material";
-import Button from "@mui/material"
+import Button from '../styled/elements/Button'
+import InfoBox from "../styled/elements/InfoBox";
+import Container from '../styled/elements/Container'
 
 const Login = () => {
     //
@@ -21,26 +23,17 @@ const Login = () => {
     const setUpUser = () => {
         let user = [{username: username.current, password: password.current, listId: setUser.length}];
         setUser(user);
-        console.log(users);
+        console.log(user);
     }
 
     return(
-        <div>
-        <TextField
-            id="username"
-            label="Username"
-            onChange={() => {
-            handleInput(e,'username');}}/>
-        <TextField
-            id="password"
-            label="Password"
-            onChange={() => {
-            handleInput(e,'password');}}/>
-        <Button
-            onClick={() => {
-            setUpUser();}}>
+        <Container>
+        <InfoBox placeholder='Username' onChange={(e)=>handleInput(e,'username')}></InfoBox>
+        <InfoBox placeholder='Password' onChange={(e)=>handleInput(e,'password')}></InfoBox>
+        <Button primary
+            onClick={() => setUpUser()}>
             Login</Button>
-        </div>
+        </Container>
     );
 }
 

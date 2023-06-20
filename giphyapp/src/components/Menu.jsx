@@ -7,8 +7,8 @@ const Menu = () => {
         <Container row>
             <ul>
                 <li><Link to='./HomePage'>HomePage</Link></li>
-                <li><Link to='/Login'>Login</Link></li>
-                <li><Link to='/FavortiesPage'>Favorites</Link></li>
+                <li><Link to='./Login'>Login</Link></li>
+                <li><Link to='./FavortiesPage'>Favorites</Link></li>
                 <li><Link to='./Search'>Search</Link></li>
             </ul>
         </Container>
