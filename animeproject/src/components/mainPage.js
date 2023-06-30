@@ -19,7 +19,7 @@ export const MainPage = () => {
     console.log(jokeResults);
     //
     //TODO: Fill in image tags(Card Media) ad well as feed text to "Typography" tag
-    //TODO:                               do this via API Functions making the calls
+    //TODO:                               do this via API Functions making the calls & CSS -_-
     return(
       <Container flexDirection='row'>
         <Container color='red'>

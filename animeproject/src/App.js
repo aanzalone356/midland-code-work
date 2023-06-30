@@ -3,12 +3,11 @@ import {
   BrowserRouter as Router, 
   Routes,
   Route,
-  Link,
   Navigate,
 } from 'react-router-dom';
 import { LoginWithAuth, MainPageWithAuth } from './components/protectedRoutes';
 import { AnimeListWithAuth } from './components/protectedRoutes';
-import { RandomAnimeWithAuth } from './components/protectedRoutes';
+//import { RandomAnimeWithAuth } from './components/protectedRoutes';
 
 //Re add NavBar at line 16
 function App() {
